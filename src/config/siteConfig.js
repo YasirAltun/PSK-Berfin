@@ -13,7 +13,7 @@ const siteConfig = {
 
   // ── İletişim ───────────────────────────────────────────────
   phone:      '+90 5XX XXX XX XX',      // ← buraya numaranızı girin
-  email:      'info@berfinaltun.com',   // ← buraya e-postanızı girin
+  email:      'ornek@email.com',        // ← buraya e-postanızı girin
   address:    'Adıyaman, Türkiye',
 
   // ── Sosyal Medya ──────────────────────────────────────────
