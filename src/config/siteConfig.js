@@ -29,6 +29,8 @@ const siteConfig = {
     lng:  38.305167,
     zoom: 15,
     popupText: 'Psikolog Berfin Altun Danışmanlık Merkezi',
+    // Google Maps embed URL — koordinat veya zoom değişirse burayı güncelleyin
+    embedUrl: 'https://maps.google.com/maps?q=37.766376,38.305167&z=15&output=embed',
   },
 
   // ── Hakkımda ──────────────────────────────────────────────

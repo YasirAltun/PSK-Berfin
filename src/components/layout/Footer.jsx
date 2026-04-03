@@ -1,29 +1,7 @@
-import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import siteConfig from '../../config/siteConfig';
 
-// Leaflet varsayılan ikon düzeltmesi
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl:       'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl:     'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-});
-
-const customIcon = new L.Icon({
-  iconUrl:       'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl:     'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize:      [25, 41],
-  iconAnchor:    [12, 41],
-  popupAnchor:   [1, -34],
-  shadowSize:    [41, 41],
-});
-
 export default function Footer() {
-  const { lat, lng, zoom, popupText } = siteConfig.map;
+  const { embedUrl } = siteConfig.map;
   const year = new Date().getFullYear();
 
   return (
@@ -99,22 +77,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Leaflet Harita */}
+        {/* Google Maps Embed */}
         <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 border border-white/10">
-          <MapContainer
-            center={[lat, lng]}
-            zoom={zoom}
-            scrollWheelZoom={false}
-            style={{ width: '100%', height: '100%' }}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[lat, lng]} icon={customIcon}>
-              <Popup>{popupText}</Popup>
-            </Marker>
-          </MapContainer>
+          <iframe
+            src={embedUrl}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Psikolog Berfin Altun Danışmanlık Merkezi Konumu"
+          />
         </div>
       </div>
 
