@@ -1,17 +1,28 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useParallax } from '../../hooks/useParallax';
 import siteConfig from '../../config/siteConfig';
 
 export default function CalismaAlanlari() {
-  const ref = useRef(null);
+  const { ref, y, yFast, contentY, contentOpacity } = useParallax(40);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="calisma-alanlari" ref={ref} className="section-padding bg-[var(--color-bg)] relative overflow-hidden">
+    <section id="calisma-alanlari" ref={ref} className="section-padding relative overflow-hidden"
+      style={{
+        backgroundImage: 'url(https://picsum.photos/seed/green-leaves/1600/900)',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Renk overlay */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(250,250,248,0.85) 0%, rgba(200,221,212,0.80) 40%, rgba(168,197,181,0.82) 100%)' }} />
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-mint to-transparent opacity-40" />
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-mint-light/30 blur-3xl pointer-events-none" />
+      <motion.div style={{ y }} className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-mint-light/30 blur-3xl pointer-events-none" />
+      <motion.div style={{ y: yFast }} className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-beige/40 blur-3xl pointer-events-none" />
 
-      <div className="container-md relative">
+      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container-md relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -55,7 +66,7 @@ export default function CalismaAlanlari() {
         >
           Listede yer almayan konularda da destek almak için iletişime geçebilirsiniz.
         </motion.p>
-      </div>
+      </motion.div>
     </section>
   );
 }

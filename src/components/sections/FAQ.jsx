@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useParallax } from '../../hooks/useParallax';
 import siteConfig from '../../config/siteConfig';
 
 function FAQItem({ item, index, isOpen, onToggle }) {
@@ -49,15 +50,25 @@ function FAQItem({ item, index, isOpen, onToggle }) {
 }
 
 export default function FAQ() {
-  const ref = useRef(null);
+  const { ref, y, yFast, contentY, contentOpacity } = useParallax(40);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="sss" ref={ref} className="section-padding bg-[var(--color-beige-light)] relative overflow-hidden">
-      <div className="absolute top-1/2 -left-32 w-96 h-96 rounded-full bg-mint-light/30 blur-3xl pointer-events-none -translate-y-1/2" />
+    <section id="sss" ref={ref} className="section-padding relative overflow-hidden"
+      style={{
+        backgroundImage: 'url(https://picsum.photos/seed/soft-abstract/1600/900)',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Renk overlay */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(140deg, rgba(232,221,208,0.88) 0%, rgba(200,221,212,0.82) 50%, rgba(240,232,220,0.85) 100%)' }} />
+      <motion.div style={{ y }} className="absolute top-1/2 -left-32 w-96 h-96 rounded-full bg-mint-light/30 blur-3xl pointer-events-none -translate-y-1/2" />
+      <motion.div style={{ y: yFast }} className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-beige/50 blur-3xl pointer-events-none" />
 
-      <div className="container-md relative">
+      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container-md relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -81,7 +92,7 @@ export default function FAQ() {
             ))}
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 }

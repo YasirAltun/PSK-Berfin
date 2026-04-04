@@ -42,17 +42,27 @@ export default function Navbar() {
         }`}
       >
         <div className="container-md flex items-center justify-between px-6">
-          {/* Logo / İsim */}
+          {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex flex-col leading-tight text-left"
+            className="flex items-center gap-3 text-left"
           >
-            <span className="font-serif text-xl font-light tracking-wide text-mint-dark">
-              {siteConfig.name}
-            </span>
-            <span className="text-[0.65rem] tracking-widest uppercase text-brown font-sans font-medium">
-              Psikolog
-            </span>
+            {/* Beyaz arka planlı logo kutusu */}
+            <div className="w-11 h-11 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 border border-beige overflow-hidden">
+              <img
+                src="/assets/logo/logo.png"
+                alt="Psikolog Berfin Altun Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="flex flex-col leading-tight">
+              <span className="font-sans text-base font-bold tracking-wide text-mint-dark">
+                Psikolog Berfin <span className="uppercase">ALTUN</span>
+              </span>
+              <span className="text-[0.6rem] tracking-widest text-brown font-sans font-medium">
+                Psikolojik Danışmanlık
+              </span>
+            </div>
           </button>
 
           {/* Desktop Nav */}

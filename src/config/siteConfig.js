@@ -9,18 +9,18 @@ const siteConfig = {
   title:      'Psikolog Berfin Altun',
   center:     'Psikolog Berfin Altun Danışmanlık Merkezi',
   city:       'Adıyaman',
-  tagline:    'Kendinizi anlamak için buradayım.',
+  tagline:    'Hayatının ikinci bölümüne hoş geldin...',
 
   // ── İletişim ───────────────────────────────────────────────
-  phone:      '+90 5XX XXX XX XX',      // ← buraya numaranızı girin
-  email:      'ornek@email.com',        // ← buraya e-postanızı girin
+  phone:      '+90 505 044 51 11',
+  email:      'psk.berfinaltun@gmail.com',
   address:    'Adıyaman, Türkiye',
 
   // ── Sosyal Medya ──────────────────────────────────────────
   social: {
-    instagram: 'https://instagram.com/',  // ← kullanıcı adınızı ekleyin
+    instagram: 'https://instagram.com/psk.berfinaltun',
     linkedin:  '',
-    whatsapp:  '+905XXXXXXXXX',           // ← WhatsApp numaranızı girin (başında + ve ülke kodu)
+    whatsapp:  '+905050445111',
   },
 
   // ── Harita ────────────────────────────────────────────────
@@ -30,7 +30,7 @@ const siteConfig = {
     zoom: 15,
     popupText: 'Psikolog Berfin Altun Danışmanlık Merkezi',
     // Google Maps embed URL — koordinat veya zoom değişirse burayı güncelleyin
-    embedUrl: 'https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d387.56928570255144!2d38.30527669524876!3d37.7662517490732!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1str!2sus!4v1775197534534!5m2!1str!2sus',
+    embedUrl: 'https://maps.google.com/maps?q=37.766376,38.305167&z=16&output=embed',
   },
 
   // ── Hakkımda ──────────────────────────────────────────────
@@ -49,7 +49,7 @@ const siteConfig = {
   workAreas: [
     { icon: '🌧️', title: 'Depresyon' },
     { icon: '🌀', title: 'Anksiyete Bozuklukları' },
-    { icon: '💓', title: 'Panik Atak' },
+    { icon: '🌊', title: 'Panik Atak' },
     { icon: '🔁', title: 'Obsesif Kompulsif Bozukluk' },
     { icon: '🍃', title: 'Yeme Bozuklukları' },
     { icon: '💬', title: 'İlişkisel Problemler' },
@@ -57,7 +57,7 @@ const siteConfig = {
     { icon: '🦋', title: 'Özgül Fobiler' },
     { icon: '🔗', title: 'Bağımlılıklar' },
     { icon: '🔥', title: 'Öfke Problemleri' },
-    { icon: '🫶', title: 'Nöromüsküler Hastalıklara Psikolojik Destek' },
+    { icon: '🌱', title: 'Nöromüsküler Hastalıklara Psikolojik Destek' },
   ],
 
   // ── Eğitim & Sertifikalar ─────────────────────────────────

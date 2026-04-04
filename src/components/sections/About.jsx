@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useParallax } from '../../hooks/useParallax';
 import siteConfig from '../../config/siteConfig';
 
 const fadeUp = (delay = 0) => ({
@@ -8,16 +9,25 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function About() {
-  const ref = useRef(null);
+  const { ref, y, yFast, ySlow, contentY, contentOpacity } = useParallax(50);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="hakkimda" ref={ref} className="section-padding bg-[var(--color-beige-light)] relative overflow-hidden">
+    <section id="hakkimda" ref={ref} className="section-padding relative overflow-hidden"
+      style={{
+        backgroundImage: 'url(https://picsum.photos/seed/nature-soft/1600/900)',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Renk overlay */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(240,232,220,0.88) 0%, rgba(232,221,208,0.85) 50%, rgba(200,221,212,0.80) 100%)' }} />
       {/* Dekoratif arka plan şekli */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-mint/20 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-beige/60 blur-3xl pointer-events-none" />
+      <motion.div style={{ y: yFast }} className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-mint/20 blur-3xl pointer-events-none" />
+      <motion.div style={{ y: ySlow }} className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-beige/60 blur-3xl pointer-events-none" />
 
-      <div className="container-md relative">
+      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container-md relative">
         {/* Başlık */}
         <motion.div
           variants={fadeUp(0)}
@@ -25,7 +35,6 @@ export default function About() {
           animate={inView ? 'visible' : 'hidden'}
           className="mb-14 text-center"
         >
-          <p className="section-label mb-3">Merhaba</p>
           <h2 className="heading-lg text-mint-dark">Hakkımda</h2>
         </motion.div>
 
@@ -73,29 +82,8 @@ export default function About() {
               </motion.p>
             ))}
 
-            {/* İstatistik kartları */}
-            <motion.div
-              variants={fadeUp(0.55)}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              className="grid grid-cols-2 gap-4 mt-2"
-            >
-              <div className="glass-beige rounded-2xl p-5 text-center">
-                <p className="heading-md text-mint-dark">11+</p>
-                <p className="font-sans text-xs text-[var(--color-text-muted)] mt-1 tracking-wide">
-                  Sertifika & Eğitim
-                </p>
-              </div>
-              <div className="glass-beige rounded-2xl p-5 text-center">
-                <p className="heading-md text-mint-dark">Online</p>
-                <p className="font-sans text-xs text-[var(--color-text-muted)] mt-1 tracking-wide">
-                  & Yüz Yüze Seans
-                </p>
-              </div>
-            </motion.div>
-
             <motion.a
-              variants={fadeUp(0.65)}
+              variants={fadeUp(0.55)}
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
               href="#randevu"
@@ -105,7 +93,7 @@ export default function About() {
             </motion.a>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

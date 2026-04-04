@@ -1,28 +1,28 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useParallax } from '../../hooks/useParallax';
 import siteConfig from '../../config/siteConfig';
 
 export default function Appointment() {
-  const ref = useRef(null);
+  const { ref, y, yFast, contentY, contentOpacity } = useParallax(40);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   const whatsappUrl = `https://wa.me/${siteConfig.social.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent('Merhaba, randevu almak istiyorum.')}`;
 
   return (
-    <section id="randevu" ref={ref} className="section-padding bg-[var(--color-bg)] relative overflow-hidden">
-      {/* Arka plan parallax görseli */}
-      <div
-        className="absolute inset-0 -z-10 opacity-20"
-        style={{
-          backgroundImage: 'url(https://picsum.photos/seed/calm-room/1400/700)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      />
-      <div className="absolute inset-0 -z-10 bg-[var(--color-bg)]/80" />
+    <section id="randevu" ref={ref} className="section-padding relative overflow-hidden"
+      style={{
+        backgroundImage: 'url(https://picsum.photos/seed/calm-room/1600/900)',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Renk overlay */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(150deg, rgba(250,250,248,0.82) 0%, rgba(168,197,181,0.78) 50%, rgba(61,90,71,0.75) 100%)' }} />
+      <motion.div style={{ y: yFast }} className="absolute top-0 right-0 w-80 h-80 rounded-full bg-mint/10 blur-3xl pointer-events-none" />
 
-      <div className="container-md relative">
+      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container-md relative">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -54,7 +54,7 @@ export default function Appointment() {
                 <p className="text-2xl mb-2">🏢</p>
                 <p className="font-serif text-lg text-mint-dark">Yüz Yüze Seans</p>
                 <p className="font-sans text-xs text-[var(--color-text-muted)] mt-1">
-                  {siteConfig.city} merkezinde
+                  Adıyaman Merkez
                 </p>
               </div>
               <div className="glass-beige rounded-2xl p-5 text-center">
@@ -100,7 +100,7 @@ export default function Appointment() {
             </a>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
