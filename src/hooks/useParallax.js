@@ -25,9 +25,13 @@ export function useParallax(strength = 60) {
   const yFast  = useTransform(blobProgress, [0, 1], [-strength * 1.6, strength * 1.6]);
   const ySlow  = useTransform(blobProgress, [0, 1], [-strength * 0.5, strength * 0.5]);
 
-  // İçerik parallax — Hero ile aynı: yavaşça yukarı kayıp solar
+  // İçerik parallax — section'ın ortası viewport tepesini geçince solare başlar (Hero mantığı)
+  const { scrollYProgress: exitProgress } = useScroll({
+    target: ref,
+    offset: ['center start', 'end start'],
+  });
   const contentY       = useTransform(contentProgress, [0, 1], ['0%', '18%']);
-  const contentOpacity = useTransform(contentProgress, [0, 0.75], [1, 0]);
+  const contentOpacity = useTransform(exitProgress, [0, 0.85], [1, 0]);
 
   return { ref, y, yFast, ySlow, contentY, contentOpacity };
 }

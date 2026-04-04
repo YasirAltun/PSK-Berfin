@@ -28,7 +28,7 @@ export default function Education() {
       <motion.div style={{ y }}     className="absolute -bottom-32 -right-24 w-96 h-96 rounded-full bg-mint/15    blur-3xl pointer-events-none" />
       <motion.div style={{ y: ySlow }} className="absolute -top-20  -left-20  w-64 h-64 rounded-full bg-beige/40   blur-3xl pointer-events-none" />
 
-      {/* Tüm içerik: yukarı kayarken solar */}
+      {/* Sadece y kayması — opacity kaldırıldı, içerikler okunabilsin */}
       <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container-md relative">
 
         {/* ── Başlık ── */}
