@@ -50,19 +50,26 @@ function FAQItem({ item, index, isOpen, onToggle }) {
 }
 
 export default function FAQ() {
-  const { ref, y, yFast, contentY, contentOpacity } = useParallax(40);
+  const { ref, y, yFast, bgY, contentY, contentOpacity } = useParallax(40);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="sss" ref={ref} className="section-padding relative overflow-hidden"
-      style={{
-        backgroundImage: 'url(https://picsum.photos/seed/soft-abstract/1600/900)',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <section id="sss" ref={ref} className="section-padding relative overflow-hidden">
+      {/* Parallax arka plan */}
+      <motion.div
+        style={{
+          y: bgY,
+          backgroundImage: 'url(https://picsum.photos/seed/soft-abstract/1600/900)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'absolute',
+          top: -80,
+          bottom: -80,
+          left: 0,
+          right: 0,
+        }}
+      />
       {/* Renk overlay */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(140deg, rgba(232,221,208,0.88) 0%, rgba(200,221,212,0.82) 50%, rgba(240,232,220,0.85) 100%)' }} />
       <motion.div style={{ y }} className="absolute top-1/2 -left-32 w-96 h-96 rounded-full bg-mint-light/30 blur-3xl pointer-events-none -translate-y-1/2" />

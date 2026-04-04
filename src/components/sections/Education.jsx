@@ -3,7 +3,7 @@ import { useParallax } from '../../hooks/useParallax';
 import siteConfig from '../../config/siteConfig';
 
 export default function Education() {
-  const { ref, y, ySlow, contentY, contentOpacity } = useParallax(50);
+  const { ref, y, ySlow, bgY, contentY, contentOpacity } = useParallax(50);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   const degrees      = siteConfig.education.filter(e => e.type === 'degree');
@@ -16,13 +16,21 @@ export default function Education() {
       id="egitimler"
       ref={ref}
       className="section-padding relative overflow-hidden"
-      style={{
-        backgroundImage: 'url(https://picsum.photos/seed/books-warm/1600/900)',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
     >
+      {/* Parallax arka plan */}
+      <motion.div
+        style={{
+          y: bgY,
+          backgroundImage: 'url(https://picsum.photos/seed/books-warm/1600/900)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'absolute',
+          top: -80,
+          bottom: -80,
+          left: 0,
+          right: 0,
+        }}
+      />
       {/* Renk overlay */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(120deg, rgba(232,221,208,0.88) 0%, rgba(240,232,220,0.85) 40%, rgba(212,196,176,0.82) 100%)' }} />
       <motion.div style={{ y }}     className="absolute -bottom-32 -right-24 w-96 h-96 rounded-full bg-mint/15    blur-3xl pointer-events-none" />
@@ -54,7 +62,7 @@ export default function Education() {
             Akademik Eğitim
           </h3>
 
-          <div className={`grid gap-4 ${degrees.length >= 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+          <div className={`grid gap-4 grid-cols-1 ${degrees.length >= 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
             {degrees.map((item, i) => (
               <motion.div
                 key={i}

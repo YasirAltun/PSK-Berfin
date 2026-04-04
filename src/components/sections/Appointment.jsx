@@ -4,20 +4,27 @@ import { useParallax } from '../../hooks/useParallax';
 import siteConfig from '../../config/siteConfig';
 
 export default function Appointment() {
-  const { ref, y, yFast, contentY, contentOpacity } = useParallax(40);
+  const { ref, y, yFast, bgY, contentY, contentOpacity } = useParallax(40);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   const whatsappUrl = `https://wa.me/${siteConfig.social.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent('Merhaba, randevu almak istiyorum.')}`;
 
   return (
-    <section id="randevu" ref={ref} className="section-padding relative overflow-hidden"
-      style={{
-        backgroundImage: 'url(https://picsum.photos/seed/calm-room/1600/900)',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <section id="randevu" ref={ref} className="section-padding relative overflow-hidden">
+      {/* Parallax arka plan */}
+      <motion.div
+        style={{
+          y: bgY,
+          backgroundImage: 'url(https://picsum.photos/seed/calm-room/1600/900)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'absolute',
+          top: -80,
+          bottom: -80,
+          left: 0,
+          right: 0,
+        }}
+      />
       {/* Renk overlay */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(150deg, rgba(250,250,248,0.82) 0%, rgba(168,197,181,0.78) 50%, rgba(61,90,71,0.75) 100%)' }} />
       <motion.div style={{ y: yFast }} className="absolute top-0 right-0 w-80 h-80 rounded-full bg-mint/10 blur-3xl pointer-events-none" />

@@ -2,24 +2,38 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import siteConfig from '../../config/siteConfig';
 
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
 export default function Hero() {
   const ref = useRef(null);
-  // Sayfa scroll pozisyonuna doğrudan bağla — min-h-screen section'da target-based scroll çalışmaz
   const { scrollY } = useScroll();
-  const textY   = useTransform(scrollY, [100, 600], ['0%', '20%']);
-  const opacity = useTransform(scrollY, [150, 550], [1, 0]);
+
+  // Arka plan parallax — mobilde sabit, masaüstünde hareket
+  const bgY     = useTransform(scrollY, [0, 800], isMobile ? [0, 0] : [-80, 80]);
+  // İçerik parallax — mobilde devre dışı
+  const textY   = useTransform(scrollY, [100, 600], isMobile ? ['0%', '0%'] : ['0%', '20%']);
+  const opacity = useTransform(scrollY, [150, 550], isMobile ? [1, 1] : [1, 0]);
 
   return (
     <section
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: 'url(https://picsum.photos/seed/therapy-calm/1600/900)',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
     >
+      {/* Parallax arka plan — iOS Safari dahil tüm tarayıcılarda çalışır */}
+      <motion.div
+        style={{
+          y: bgY,
+          backgroundImage: 'url(https://picsum.photos/seed/therapy-calm/1600/900)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'absolute',
+          top: -80,
+          bottom: -80,
+          left: 0,
+          right: 0,
+        }}
+      />
+
       {/* Renk overlay */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(250,250,248,0.85) 0%, rgba(200,221,212,0.75) 50%, rgba(232,221,208,0.80) 100%)' }} />
 

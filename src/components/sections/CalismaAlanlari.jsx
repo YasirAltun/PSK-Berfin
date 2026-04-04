@@ -4,18 +4,25 @@ import { useParallax } from '../../hooks/useParallax';
 import siteConfig from '../../config/siteConfig';
 
 export default function CalismaAlanlari() {
-  const { ref, y, yFast, contentY, contentOpacity } = useParallax(40);
+  const { ref, y, yFast, bgY, contentY, contentOpacity } = useParallax(40);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="calisma-alanlari" ref={ref} className="section-padding relative overflow-hidden"
-      style={{
-        backgroundImage: 'url(https://picsum.photos/seed/green-leaves/1600/900)',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <section id="calisma-alanlari" ref={ref} className="section-padding relative overflow-hidden">
+      {/* Parallax arka plan */}
+      <motion.div
+        style={{
+          y: bgY,
+          backgroundImage: 'url(https://picsum.photos/seed/green-leaves/1600/900)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'absolute',
+          top: -80,
+          bottom: -80,
+          left: 0,
+          right: 0,
+        }}
+      />
       {/* Renk overlay */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(250,250,248,0.85) 0%, rgba(200,221,212,0.80) 40%, rgba(168,197,181,0.82) 100%)' }} />
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-mint to-transparent opacity-40" />

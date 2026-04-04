@@ -9,18 +9,25 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function About() {
-  const { ref, y, yFast, ySlow, contentY, contentOpacity } = useParallax(50);
+  const { ref, y, yFast, ySlow, bgY, contentY, contentOpacity } = useParallax(50);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="hakkimda" ref={ref} className="section-padding relative overflow-hidden"
-      style={{
-        backgroundImage: 'url(https://picsum.photos/seed/nature-soft/1600/900)',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <section id="hakkimda" ref={ref} className="section-padding relative overflow-hidden">
+      {/* Parallax arka plan — iOS Safari dahil tüm tarayıcılarda çalışır */}
+      <motion.div
+        style={{
+          y: bgY,
+          backgroundImage: 'url(https://picsum.photos/seed/nature-soft/1600/900)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'absolute',
+          top: -80,
+          bottom: -80,
+          left: 0,
+          right: 0,
+        }}
+      />
       {/* Renk overlay */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(240,232,220,0.88) 0%, rgba(232,221,208,0.85) 50%, rgba(200,221,212,0.80) 100%)' }} />
       {/* Dekoratif arka plan şekli */}
