@@ -51,7 +51,7 @@ export default function Appointment() {
               <span className="text-3xl">📅</span>
             </div>
 
-            <p className="font-sans text-[var(--color-text)] leading-relaxed mb-8 text-base">
+            <p className="font-sans text-[var(--color-text)] leading-relaxed mb-8 text-lg font-normal">
               {siteConfig.appointment.note}
             </p>
 
@@ -59,15 +59,15 @@ export default function Appointment() {
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               <div className="glass-mint rounded-2xl p-5 text-center">
                 <p className="text-2xl mb-2">🏢</p>
-                <p className="font-serif text-lg text-mint-dark">Yüz Yüze Seans</p>
-                <p className="font-sans text-xs text-[var(--color-text-muted)] mt-1">
+                <p className="font-serif text-xl text-mint-dark font-medium">Yüz Yüze Seans</p>
+                <p className="font-sans text-sm text-[var(--color-text-muted)] mt-1">
                   Adıyaman Merkez
                 </p>
               </div>
               <div className="glass-beige rounded-2xl p-5 text-center">
                 <p className="text-2xl mb-2">💻</p>
-                <p className="font-serif text-lg text-brown">Online Seans</p>
-                <p className="font-sans text-xs text-[var(--color-text-muted)] mt-1">
+                <p className="font-serif text-xl text-brown font-medium">Online Seans</p>
+                <p className="font-sans text-sm text-[var(--color-text-muted)] mt-1">
                   Türkiye ve Dünya'nın her yerinden
                 </p>
               </div>
@@ -78,16 +78,16 @@ export default function Appointment() {
               <div className="glass-beige rounded-xl px-5 py-3 flex items-center gap-3">
                 <span className="text-lg">📞</span>
                 <div className="text-left">
-                  <p className="font-sans text-[0.65rem] text-[var(--color-text-muted)] uppercase tracking-wide">Telefon</p>
-                  <p className="font-sans text-sm font-medium text-[var(--color-text)]">{siteConfig.phone}</p>
+                  <p className="font-sans text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Telefon</p>
+                  <p className="font-sans text-base font-semibold text-[var(--color-text)]">{siteConfig.phone}</p>
                 </div>
               </div>
               {siteConfig.email && (
                 <div className="glass-beige rounded-xl px-5 py-3 flex items-center gap-3">
                   <span className="text-lg">✉️</span>
                   <div className="text-left">
-                    <p className="font-sans text-[0.65rem] text-[var(--color-text-muted)] uppercase tracking-wide">E-posta</p>
-                    <p className="font-sans text-sm font-medium text-[var(--color-text)]">{siteConfig.email}</p>
+                  <p className="font-sans text-xs text-[var(--color-text-muted)] uppercase tracking-wide">E-posta</p>
+                  <p className="font-sans text-base font-semibold text-[var(--color-text)]">{siteConfig.email}</p>
                   </div>
                 </div>
               )}

@@ -3,6 +3,45 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useParallax } from '../../hooks/useParallax';
 import siteConfig from '../../config/siteConfig';
 
+function FAQAnswer({ item }) {
+  return (
+    <div className="flex flex-col gap-3">
+      {/* Paragraflar */}
+      {item.paragraphs?.map((p, i) => (
+        <p key={i} className="font-sans text-base text-[var(--color-text-muted)] leading-relaxed">
+          {p}
+        </p>
+      ))}
+
+      {/* Madde listesi */}
+      {item.bullets?.length > 0 && (
+        <ul className="flex flex-col gap-1 pl-5">
+          {item.bullets.map((b, i) => (
+            <li key={i} className="font-sans text-base text-[var(--color-text-muted)] leading-relaxed list-disc">
+              {b}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Alt başlıklı bölümler (Online / Yüz Yüze) */}
+      {item.subSections?.map((s, i) => (
+        <p key={i} className="font-sans text-base text-[var(--color-text-muted)] leading-relaxed">
+          <strong className="text-[var(--color-text)] font-semibold">{s.label}: </strong>
+          {s.text}
+        </p>
+      ))}
+
+      {/* Dipnot */}
+      {item.note && (
+        <p className="font-sans text-sm text-brown italic leading-relaxed border-t border-white/30 pt-2 mt-1">
+          {item.note}
+        </p>
+      )}
+    </div>
+  );
+}
+
 function FAQItem({ item, index, isOpen, onToggle }) {
   return (
     <motion.div
@@ -16,7 +55,7 @@ function FAQItem({ item, index, isOpen, onToggle }) {
         className="w-full flex items-center justify-between px-6 py-5 text-left gap-4"
         aria-expanded={isOpen}
       >
-        <span className="font-serif text-lg text-[var(--color-text)] leading-snug">
+        <span className="font-serif text-xl text-[var(--color-text)] leading-snug font-medium">
           {item.question}
         </span>
         <motion.span
@@ -37,10 +76,8 @@ function FAQItem({ item, index, isOpen, onToggle }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <div className="px-6 pb-5 border-t border-white/40">
-              <p className="font-sans text-sm text-[var(--color-text-muted)] leading-relaxed pt-4">
-                {item.answer}
-              </p>
+            <div className="px-6 pb-5 border-t border-white/40 pt-4">
+              <FAQAnswer item={item} />
             </div>
           </motion.div>
         )}
@@ -52,7 +89,7 @@ function FAQItem({ item, index, isOpen, onToggle }) {
 export default function FAQ() {
   const { ref, y, yFast, bgY, contentY, contentOpacity } = useParallax(40);
   const inView = useInView(ref, { once: true, margin: '-80px' });
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
     <section id="sss" ref={ref} className="section-padding relative overflow-hidden">

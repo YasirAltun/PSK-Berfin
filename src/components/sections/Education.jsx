@@ -8,8 +8,6 @@ export default function Education() {
 
   const degrees      = siteConfig.education.filter(e => e.type === 'degree');
   const certificates = siteConfig.education.filter(e => e.type === 'certificate');
-  const certMain     = certificates.slice(0, 10);
-  const certLast     = certificates[10] || null;
 
   return (
     <section
@@ -37,16 +35,15 @@ export default function Education() {
       <motion.div style={{ y: ySlow }} className="absolute -top-20  -left-20  w-64 h-64 rounded-full bg-beige/40   blur-3xl pointer-events-none" />
 
       {/* Sadece y kayması — opacity kaldırıldı, içerikler okunabilsin */}
-      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container-md relative">
+      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container-md relative -mt-8">
 
         {/* ── Başlık ── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center mb-10"
         >
-          <p className="section-label mb-3">Akademik Altyapı</p>
           <h2 className="heading-lg text-mint-dark">Aldığım Eğitimler</h2>
         </motion.div>
 
@@ -71,10 +68,10 @@ export default function Education() {
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                 className="glass rounded-2xl p-5"
               >
-                <p className="font-sans text-xs text-mint-dark font-medium tracking-wide mb-1">
+                <p className="font-sans text-sm text-mint-dark font-semibold tracking-wide mb-1">
                   {item.institution}
                 </p>
-                <p className="font-serif text-lg text-[var(--color-text)] leading-snug">
+                <p className="font-serif text-xl text-[var(--color-text)] leading-snug font-medium">
                   {item.title}
                 </p>
               </motion.div>
@@ -93,9 +90,9 @@ export default function Education() {
             Sertifikalar
           </h3>
 
-          {/* İlk 10 — 2 sütun (5 sol + 5 sağ) */}
+          {/* Tüm sertifikalar — 2 sütun grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {certMain.map((item, i) => (
+            {certificates.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 15 }}
@@ -103,34 +100,15 @@ export default function Education() {
                 transition={{ duration: 0.45, delay: 0.3 + i * 0.05 }}
                 className="glass-beige rounded-xl px-4 py-3"
               >
-                <p className="font-sans text-[0.7rem] text-brown font-medium tracking-wide mb-0.5">
+                <p className="font-sans text-xs text-brown font-semibold tracking-wide mb-0.5">
                   {item.institution}
                 </p>
-                <p className="font-sans text-sm text-[var(--color-text)] leading-snug">
+                <p className="font-sans text-base text-[var(--color-text)] leading-snug font-medium">
                   {item.title}
                 </p>
               </motion.div>
             ))}
           </div>
-
-          {/* 11. item — orta altta */}
-          {certLast && (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: 0.3 + certMain.length * 0.05 }}
-              className="flex justify-center mt-4"
-            >
-              <div className="glass-beige rounded-xl px-4 py-3 w-full sm:w-1/2">
-                <p className="font-sans text-[0.7rem] text-brown font-medium tracking-wide mb-0.5">
-                  {certLast.institution}
-                </p>
-                <p className="font-sans text-sm text-[var(--color-text)] leading-snug">
-                  {certLast.title}
-                </p>
-              </div>
-            </motion.div>
-          )}
         </motion.div>
 
       </motion.div>

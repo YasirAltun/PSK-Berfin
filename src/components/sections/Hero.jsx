@@ -53,7 +53,7 @@ export default function Hero() {
             transition={{ delay: 0.2, duration: 0.7 }}
             className="section-label mb-4"
           >
-            PSİKOLOG &amp; DANIŞMAN
+            UZMAN PSİKOLOG
           </motion.p>
 
           <motion.h1
@@ -69,7 +69,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="font-serif text-2xl text-brown italic mb-6 font-light"
+            className="font-serif text-3xl text-brown italic mb-6 font-normal"
           >
             "{siteConfig.tagline}"
           </motion.p>
@@ -78,9 +78,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.7 }}
-            className="text-[var(--color-text-muted)] font-sans text-base max-w-md lg:max-w-none mx-auto lg:mx-0 mb-8 leading-relaxed"
+            className="text-[var(--color-text-muted)] font-sans text-lg font-medium max-w-md lg:max-w-none mx-auto lg:mx-0 mb-8 leading-relaxed"
           >
-            {siteConfig.city} merkezli yüz yüze ve Türkiye'nin her yerinden online terapi hizmetleri.
+            {siteConfig.city} merkezli yüz yüze ve online terapi hizmeti.
           </motion.p>
 
           <motion.div
@@ -106,10 +106,6 @@ export default function Hero() {
               alt={siteConfig.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute bottom-0 left-0 right-0 glass-dark p-4">
-              <p className="font-serif text-lg text-white font-light">{siteConfig.title}</p>
-              <p className="font-sans text-xs text-white/80 tracking-widest mt-0.5">{siteConfig.center}</p>
-            </div>
           </div>
         </motion.div>
       </motion.div>

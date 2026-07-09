@@ -48,19 +48,16 @@ export default function Navbar() {
             className="flex items-center gap-3 text-left"
           >
             {/* Beyaz arka planlı logo kutusu */}
-            <div className="w-11 h-11 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 border border-beige overflow-hidden">
+            <div className="w-14 h-14 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 border border-beige overflow-hidden">
               <img
                 src="/assets/logo/logo.png"
-                alt="Psikolog Berfin Altun Logo"
+                alt="Uzman Psikolog Berfin Altun Logo"
                 className="w-full h-full object-contain"
               />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="font-sans text-base font-bold tracking-wide text-mint-dark">
-                Psikolog Berfin <span className="uppercase">ALTUN</span>
-              </span>
-              <span className="text-[0.6rem] tracking-widest text-brown font-sans font-medium">
-                Psikolojik Danışmanlık
+              <span className="font-sans text-lg font-bold tracking-wide text-mint-dark">
+                Uzman Psikolog Berfin <span className="uppercase">ALTUN</span>
               </span>
             </div>
           </button>

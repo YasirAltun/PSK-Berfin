@@ -62,16 +62,6 @@ export default function About() {
                   onError={(e) => { e.target.src = siteConfig.about.photoFallback; }}
                 />
               </div>
-              {/* Gönüllülük rozeti */}
-              <div className="glass-mint absolute -bottom-5 -right-5 rounded-2xl px-5 py-4 max-w-[200px] shadow-lg">
-                <p className="font-sans text-xs text-mint-dark font-medium leading-snug">
-                  🫶 Gönüllü Terapi Desteği
-                  <br />
-                  <span className="font-light text-[0.7rem] text-brown">
-                    Nöromüsküler Kas Hastalığı Projesinde
-                  </span>
-                </p>
-              </div>
             </div>
           </motion.div>
 
@@ -83,7 +73,7 @@ export default function About() {
                 variants={fadeUp(0.25 + i * 0.12)}
                 initial="hidden"
                 animate={inView ? 'visible' : 'hidden'}
-                className="font-sans text-[var(--color-text)] leading-relaxed text-base"
+                className="font-sans text-[var(--color-text)] leading-relaxed text-xl font-normal"
               >
                 {paragraph}
               </motion.p>
